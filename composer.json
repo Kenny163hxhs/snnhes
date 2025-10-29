@@ -1,20 +1,11 @@
 {
-    "name": "snnhes/national-high-school-enrollment-system",
-    "description": "National High School Enrollment System",
-    "type": "project",
-    "require": {
-        "php": ">=7.4"
-    },
-    "require-dev": {},
-    "scripts": {
-        "post-install-cmd": [],
-        "post-update-cmd": []
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
+  "name": "snnhes/student-enrollment-system",
+  "description": "Student National High School Enrollment System",
+  "type": "project",
+  "require": {
+    "php": ">=7.4"
+  },
+  "scripts": {
+    "start": "php -S 0.0.0.0:8000 -t ."
+  }
 }

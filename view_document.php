@@ -38,7 +38,28 @@ $filePath = $document['file_path'];
 
 // Cross-platform path handling using helper functions
 if (!isFileAccessible($filePath)) {
-    die('Access denied: Invalid file path or file not found');
+    // Try to find a similar file in the uploads directory
+    $fileName = basename($filePath);
+    $uploadDirs = ['uploads/students/', 'uploads/transfers/'];
+    $foundFile = null;
+    
+    foreach ($uploadDirs as $dir) {
+        if (is_dir($dir)) {
+            $files = scandir($dir);
+            foreach ($files as $file) {
+                if ($file != '.' && $file != '..' && strpos($file, $fileName) !== false) {
+                    $foundFile = $dir . $file;
+                    break 2;
+                }
+            }
+        }
+    }
+    
+    if ($foundFile) {
+        $filePath = $foundFile;
+    } else {
+        die('Access denied: File not found. Original path: ' . htmlspecialchars($filePath));
+    }
 }
 
 $fullPath = getCrossPlatformFilePath($filePath);

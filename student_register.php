@@ -6,7 +6,6 @@
 
 session_start();
 require_once 'config/database.php';
-require_once 'includes/simple_image_processor.php';
 
 $db = Database::getInstance();
 $success = '';
@@ -22,7 +21,7 @@ error_log("Course details: " . json_encode(array_column($courses, 'course_name')
 $currentPeriod = $db->fetchOne("SELECT * FROM enrollment_periods WHERE is_active = 1 ORDER BY start_date DESC LIMIT 1");
 $currentAcademicYear = $currentPeriod['academic_year'] ?? date('Y') . '-' . (date('Y') + 1);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         // Validate required fields
         $requiredFields = ['first_name', 'last_name', 'date_of_birth', 'gender', 'address', 'city', 'state', 'zip_code', 'course_id', 'year_level'];

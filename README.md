@@ -54,9 +54,8 @@ A comprehensive web-based enrollment system for managing student registrations, 
    - Set up file upload directories
    - Configure email settings (optional)
 
-4. **Deploy**
-   - Upload files to your web server
-   - Set proper file permissions
+4. **Start the application**
+   - Start your local web server (XAMPP, WAMP, etc.)
    - Access the application via web browser
 
 ## 📁 Project Structure
@@ -160,21 +159,13 @@ The system is fully responsive and works on:
 - Mobile phones
 - All modern browsers
 
-## 🚀 Deployment
+## 🚀 Getting Started
 
-### Railway Deployment
-1. Upload to GitHub
-2. Connect to Railway
-3. Add MySQL database
-4. Set environment variables
-5. Deploy
-
-### Traditional Hosting
-1. Upload files via FTP/SFTP
-2. Set up MySQL database
-3. Configure web server
-4. Set file permissions
-5. Test application
+1. **Clone the repository**
+2. **Set up XAMPP or similar local server**
+3. **Import the database schema**
+4. **Configure database settings**
+5. **Start using the system**
 
 ## 📞 Support
 
