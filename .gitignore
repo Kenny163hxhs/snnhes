@@ -1,0 +1,54 @@
+# SNNHES .gitignore
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Log files
+*.log
+logs/
+
+# Cache files
+cache/
+*.cache
+
+# Test files (optional - remove if you want to include them)
+test_*.php
+debug_*.php
+quick_*.php
+*_test.php
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+
+# Large files (if any)
+*.zip
+*.tar.gz
+*.rar
+
+# PHP session files
+sessions/
+
+# Uploaded files (optional - include if you want to keep uploaded files)
+# uploads/
+
+# Composer
+vendor/
+composer.lock
