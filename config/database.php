@@ -141,6 +141,34 @@ function uploadFile($file, $targetDir, $allowedTypes = ['jpg', 'jpeg', 'png', 'p
     return $targetPath;
 }
 
+// Flash message functions
+function setFlashMessage($type, $message) {
+    $_SESSION['flash_message'] = [
+        'type' => $type,
+        'message' => $message
+    ];
+}
+
+function getFlashMessage() {
+    if (isset($_SESSION['flash_message'])) {
+        $flash = $_SESSION['flash_message'];
+        unset($_SESSION['flash_message']);
+        return $flash;
+    }
+    return null;
+}
+
+function displayFlashMessage() {
+    $flash = getFlashMessage();
+    if ($flash) {
+        $alertClass = $flash['type'] === 'success' ? 'alert-success' : 'alert-danger';
+        echo "";
+        echo htmlspecialchars($flash['message']);
+        echo "";
+        echo "";
+    }
+}
+
 // Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
