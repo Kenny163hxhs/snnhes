@@ -1,4 +1,41 @@
-connection = new PDO($dsn, DB_USER, DB_PASS, [
+<?php
+/**
+ * Database Configuration
+ * National High School Enrollment System
+ */
+
+// Database configuration
+define('DB_HOST', $_ENV['DB_HOST'] ?? 'localhost');
+define('DB_NAME', $_ENV['DB_NAME'] ?? 'snnhes_db');
+define('DB_USER', $_ENV['DB_USER'] ?? 'root');
+define('DB_PASS', $_ENV['DB_PASS'] ?? '');
+define('DB_PORT', $_ENV['DB_PORT'] ?? '3306');
+
+// Application configuration
+define('APP_ENV', $_ENV['APP_ENV'] ?? 'production');
+define('APP_URL', $_ENV['APP_URL'] ?? 'https://your-app.railway.app');
+define('APP_DEBUG', $_ENV['APP_DEBUG'] ?? false);
+
+// File upload configuration
+define('UPLOAD_MAX_SIZE', 5 * 1024 * 1024); // 5MB
+define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'pdf', 'doc', 'docx']);
+
+// Security configuration
+define('SESSION_TIMEOUT', 3600); // 1 hour
+define('PASSWORD_MIN_LENGTH', 8);
+
+/**
+ * Database Class
+ * Handles all database operations
+ */
+class Database {
+    private static $instance = null;
+    private $connection;
+    
+    private function __construct() {
+        try {
+            $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4";
+            $this->connection = new PDO($dsn, DB_USER, DB_PASS, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES => false,
@@ -162,10 +199,10 @@ function displayFlashMessage() {
     $flash = getFlashMessage();
     if ($flash) {
         $alertClass = $flash['type'] === 'success' ? 'alert-success' : 'alert-danger';
-        echo "";
+        echo "<div class='alert {$alertClass} alert-dismissible fade show' role='alert'>";
         echo htmlspecialchars($flash['message']);
-        echo "";
-        echo "";
+        echo "<button type='button' class='btn-close' data-bs-dismiss='alert'></button>";
+        echo "</div>";
     }
 }
 
